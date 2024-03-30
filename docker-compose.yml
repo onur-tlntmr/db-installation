@@ -3,7 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:14-alpine
-    container_name: vfdb-postgres
+    container_name: db-postgres
     ports:
       - 5432:5432
     environment:
@@ -18,7 +18,7 @@ services:
   mssql:
     build: ./docker-files/mssql
     image: vf-mssql:2019-latest
-    container_name: vfdb-mssql
+    container_name: db-mssql
     ports:
       - 1433:1433
     deploy:
@@ -28,7 +28,7 @@ services:
   
   oracle:
     image: gvenzl/oracle-xe:full
-    container_name: vfdb-oracle
+    container_name: db-oracle
     ports:
       - 1521:1521
     environment:
