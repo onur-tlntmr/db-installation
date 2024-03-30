@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: vfdb-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=MYUSER
+      - POSTGRES_PASSWORD=Abc123def
+      - POSTGRES_DB=MYDB
+    deploy:
+      resources:
+        limits:
+          memory: '2G'
+
+  mssql:
+    build: ./docker-files/mssql
+    image: vf-mssql:2019-latest
+    container_name: vfdb-mssql
+    ports:
+      - 1433:1433
+    deploy:
+      resources:
+        limits:
+          memory: '2G'
+  
+  oracle:
+    image: gvenzl/oracle-xe:full
+    container_name: vfdb-oracle
+    ports:
+      - 1521:1521
+    environment:
+      - APP_USER=MYUSER
+      - APP_USER_PASSWORD=Abc123def
+      - ORACLE_PASSWORD=Abc123def
+    deploy:
+      resources:
+        limits:
+          memory: '2G'
+
+
+    
